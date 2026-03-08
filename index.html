@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Women's Day</title>
+</head>
+
+<title>Quốc tế phụ nữ!</title>
+
+<style>
+
+#specialBtn{
+padding:10px 20px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff6fa5;
+color:white;
+cursor:pointer;
+transition:transform 0.2s, box-shadow 0.2s;
+}
+
+#specialBtn:active{
+transform:scale(0.9);
+}
+
+.specialClick{
+animation:specialPulse 0.6s ease;
+}
+
+@keyframes specialPulse{
+
+0%{
+transform:scale(1);
+box-shadow:0 0 0px pink;
+}
+
+50%{
+transform:scale(1.3);
+box-shadow:0 0 20px hotpink;
+}
+
+100%{
+transform:scale(1);
+box-shadow:0 0 0px pink;
+}
+
+}
+.flyingHeart{
+position:fixed;
+font-size:20px;
+pointer-events:none;
+animation:fly 1s ease-out forwards;
+}
+
+@keyframes fly{
+0%{
+transform:scale(1);
+opacity:1;
+}
+100%{
+transform:translate(var(--x), var(--y)) scale(0.5);
+opacity:0;
+}
+}
+
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ffdee9;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+#heart{
+font-size:100px;
+cursor:pointer;
+animation:pulse 1.5s infinite;
+transition:transform 0.6s ease;
+}
+
+#heart.explode{
+animation:explode 0.8s forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(1);}
+50%{transform:scale(3);}
+100%{
+transform:scale(20);
+opacity:0;
+}
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+h1{
+font-size:55px;
+animation: fadeIn 2s;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+input{
+padding:12px;
+font-size:18px;
+border-radius:15px;
+border:none;
+margin-top:20px;
+}
+
+#searchSection{
+margin-top:30px;
+display:block;
+}
+
+
+#result{
+margin:20px auto;
+font-size:24px;
+max-width:500px;
+letter-spacing:1px;
+word-spacing:5px;
+line-height:1.6;
+text-align:center;
+
+background:rgba(255,255,255,0.2);
+padding:20px;
+border-radius:20px;
+
+text-shadow:
+-1px -1px 0 #000,
+1px -1px 0 #000,
+-1px 1px 0 #000,
+1px 1px 0 #000;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(-40px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="intro">
+    <div id="heart">💗</div>
+</div>
+
+<div id="mainContent" style="display:none;">
+
+<h1>Chúc mừng ngày quốc tế phụ nữ! 🌸</h1>
+<p id="introText">Cho bọn con gái lớp 9A10 thôi</p>
+
+<div id="searchSection">
+
+
+
+<input id="nameInput" placeholder="Nhập họ tên mày vào đây"
+onkeypress="if(event.key==='Enter'){searchName()}">
+
+<br><br>
+
+<button onclick="searchName()">Search</button>
+
+<div id="result"></div>
+<div id="credit"></div>
+
+<button id="specialBtn" onclick="showSpecial()" style="display:none;margin-top:20px;">
+Xem tin nhắn đặc biệt
+</button>
+
+</div>
+
+</div>
+
+<script>
+    
+function explodeHearts(){
+
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div");
+heart.className="flyingHeart";
+heart.innerText="💖";
+
+let x=(Math.random()-0.5)*800+"px";
+let y=(Math.random()-0.5)*800+"px";
+
+heart.style.left="50%";
+heart.style.top="50%";
+
+heart.style.setProperty("--x",x);
+heart.style.setProperty("--y",y);
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},1000);
+
+}
+
+}
+
+let heart=document.getElementById("heart");
+
+heart.onclick=function(){
+
+heart.classList.add("explode");
+
+explodeHearts();   // 💥 add this line
+
+setTimeout(()=>{
+
+document.getElementById("intro").style.display="none";
+document.getElementById("mainContent").style.display="block";
+
+},700)
+
+}
+    function normalize(text){
+return text
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"");
+}
+function typeWriter(text, element, speed=35){
+
+element.textContent=""
+
+let i=0
+
+function typing(){
+if(i < text.length){
+element.textContent += text.charAt(i)
+i++
+setTimeout(typing, speed)
+}
+}
+
+typing()
+
+}
+const messages = {
+
+"Tạ Bình An":"Có lẽ, lớp này sẽ không bao giờ đủ đầy nếu thiếu m đâu An ạ. Chúc 8/3 vui vẻ nhé An!",
+
+"Nguyễn Lê Trúc Anh":"K có m thì lớp này im hơn hẳn, k có ý xấu đâu nhé. Chỉ là có m thì lớp này vui hơn thôi. 8/3 vui vẻ nhé Trúc!",
+
+"Ngô Minh Ánh":"T cũng chả biết nhắn nhủ gì m, chỉ biết là t mong m sẽ có một ngày 8/3 thật vui vẻ và hạnh phúc bên gia đình và bạn bè thôi Ánh ạ.",
+
+"Bùi Thanh Hà":"Chúc 8/3 vui vẻ nhé! Năm cuối làm tổ trưởng thì cũng nên có một lời chúc đặc biệt cho m nhỉ? Chúc m luôn vui vẻ và thành công trong mọi việc nhé Hà!",
+
+"Nguyễn Khánh Huyền":"Cảm ơn mày vì đã làm lớp mình thêm đặc biệt hơn nhé! Năm cuối bên nhau thì chúc nhau 8/3 thì có làm sao đúng không?:) ",
+
+"Lê Phương Linh":"M có thể thấp, nhưng không có nghĩa sự đóng góp trong lớp này của m là thấp đâu. Chúc 8/3 vui vẻ nhé Linh!",
+
+"Nguyễn Khánh Linh":"Có thể m không nhận ra, nhưng m cũng rất đáng quý trong lớp này đấy! Chúc m 8/3 vui vẻ nhé Linh!",
+
+"Vũ Tú Linh":"Không ai phủ nhận sự đóng góp của m cho lớp này đâu Linh ạ, m rất đáng được trân trọng đấy! Chúc 8/3 vui vẻ nhé Linh!",
+
+"Vương Thị Bảo Ngọc":"Chúc 8/3 vui vẻ nhé! Lớp này chắc chắn sẽ k thiếu một người con gái giỏi giang như m được;)",
+
+"Nguyễn Lê Hạnh Nguyên":"M đóng góp nhiều rồi! Mọi người trong lớp đều rất trân quý những khoảnh khắc, những kỉ niệm mà m đã tạo ra cho lớp này đấy! T k thể cảm ơn đủ những công lao m đã dành cho lớp, chúc 8/3 vui vẻ nhé Nguyên!",
+
+"Nguyễn Ngọc Phương Nhi":"T hay mọi người trong lớp đều không thể phủ nhận những gì m đem lại cho lớp đâu Nhi ạ! T muốn chúc m một ngày 8/3 vui vẻ nhất nhé!",
+
+"Đinh Phương Thảo":"T cũng chả biết phải nói gì về m, có lẽ m khá đặc biệt. Nhưng điều đó không có nghĩa m không là một phần, một sự đóng góp lớn cho lớp! Chúc 8/3 vui vẻ nhé Thảo!",
+
+"Phan Dương Minh Thư":"M là một thành viên trong lớp và sẽ luôn luôn là thế! Cái lớp này sẽ k như bây h nếu k có m. Tất cả mọi người đều rất trân trọng m đấy, chúc 8/3 vui vẻ nhé Thư!",
+
+"Lý Bảo Trâm":"Tổ trưởng là một trọng trách khá lớn trong lớp đấy, nhưng đây là năm cuối m dc làm chức này trong lớp r! Nên đây cũng sẽ là lúc để t nói rằng chúc m 8/3 đầy niềm vui nhé Trâm!",
+
+"Nguyễn Bảo Trâm":"Viết lời chúc cho m thì t cũng hết chất xám rồi, xin lỗi nhé. Nhưng có điều là k có ai có thể thay thế được m trong lớp này đâu Trâm ạ. M luôn là một phần quan trọng trong lớp, chúc 8/3 vui vẻ nhé Trâm!",
+
+"Dương Khánh Vy":"Cảm ơn vì đã đồng hành cùng lớp suốt quãng thời gian 4 năm này nhé! Có thể là ít, có thể là nhiều đối với vài người. Nhưng không ai phủ nhận được sự quan trọng của m trong lớp đâu. Chúc một ngày 8/3 vui vẻ nhé Vy!",
+
+"Lê Vũ Hà Vy":"Lớp phó học tập không phải là một trọng trách mà một người bình thường có thể làm được. Cảm ơn vì những gì m đã làm cho lớp mình trong suốt thời gian qua nhé! Chúc một ngày 8/3 vui vẻ nhé Vy!",
+};
+const specialMessages = {
+"Nguyễn Lê Hạnh Nguyên":{
+message:"chúc bạn iu ngày 8/3 mãi xinh đẹp , vui vẻ , hạnh phúc , học giỏi , gặp nhiều may mắn , bớt áp lực , đặt đc điều mong muốn trong cuộc sống",
+author:"Tuan Anh💓"
+},
+"Nguyễn Lê Trúc Anh":{
+message:"Nhân ngày 8/3, anh chúc em luôn xinh đẹp, vui vẻ và hạnh phúc. Mong rằng mỗi ngày của em đều đầy ắp tiếng cười và những điều tốt đẹp. Cảm ơn em vì đã luôn ở bên, quan tâm và mang lại cho anh rất nhiều niềm vui.",
+author:"Bach💖"
+},
+"Ngô Minh Ánh":{
+message:"Nhân ngày 8/3 này t chúc 🐿️ ăn uống đầy đủ hơn ngủ đủ giấc và chú ý sức khoẻ hơn. Học hành ngày càng tốt lên và gặp nhìu may mắn trong năm nay nhee💝✨",
+author:"Duong 💘"
+},
+"Bùi Thanh Hà":{
+message:"nhân ngày 8/3 chúc cô gái đặc biệt của anh có một ngày thật vui và ý nghĩa. cảm ơn e vì đã xuất hiện và đến bên cuộc đời a, mong e sẽ luôn vui vẻ hphuc và đạt đc những điều mình mong muốn. hy vọng cta có thể bên nhau thật lâu và mãi mãi về sau này",
+author:"V.anh💗"
+},
+};
+
+
+
+
+
+function start(){
+document.getElementById("intro").style.display="none"
+document.querySelector("button").style.display="none"
+document.getElementById("searchSection").style.display="block"
+}
+
+function searchName(){
+
+let input = document.getElementById("nameInput").value.trim();
+let result = document.getElementById("result");
+let specialBtn = document.getElementById("specialBtn");
+
+let name = null;
+
+for(let key in messages){
+if(normalize(key) === normalize(input)){
+name = key;
+break;
+}
+}
+
+result.textContent = "Tìm kiếm lời chúc...";
+specialBtn.style.display = "none";
+
+setTimeout(() => {
+
+if(name){
+
+typeWriter(messages[name], result);
+
+if(specialMessages[name]){
+specialBtn.style.display = "block";
+}
+
+}else{
+result.textContent = "Nhập sai tên rồi kìa";
+}
+
+},1200)
+
+}
+function showSpecial(){
+
+let result = document.getElementById("result");
+let credit = document.getElementById("credit");
+
+let input = document.getElementById("nameInput").value.trim();
+
+let name = null;
+
+for(let key in specialMessages){
+if(normalize(key) === normalize(input)){
+name = key;
+break;
+}
+}
+
+if(name){
+
+typeWriter(specialMessages[name].message, result);
+
+credit.innerHTML = "— Người gửi: " + specialMessages[name].author + " ";
+
+}
+
+}
+
+
+
+if(name){
+
+let screen = document.createElement("div");
+screen.id = "specialScreen";
+
+screen.innerHTML = `
+<div id="specialText"></div>
+<div id="sender">— From ${name}</div>
+`;
+
+document.body.appendChild(screen);
+
+typeWriter(specialMessages[name], document.getElementById("specialText"));
+
+}
+
+600
+
+
+if(name){
+typeWriter(specialMessages[name], result);
+}
+
+
+setInterval(createHeart,400)
+
+function createHeart(){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerText="💖"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.fontSize=(Math.random()*18+14)+"px"
+
+heart.style.opacity=Math.random()
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.remove()
+},6000)
+
+}
+
+</script>
+
+</body>
+
+</html>
